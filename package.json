@@ -1,9 +1,10 @@
 {
   "scripts": {
     "test": "jest"
-  }
+  },
   "dependencies": {
     "@svgdotjs/svg.js": "^3.2.0",
+    "inquirer": "^9.2.8",
     "readline-sync": "^1.4.10",
     "svgdom": "^0.1.14"
   }
