@@ -16,15 +16,17 @@ This application requires Node.js to be installed on your machine.
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/liq543/logo-generator.git
+    git clone https://github.com/liq543/SVG-Logo-Maker.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd logo-generator
+    cd SVG-Logo-Maker
     ```
 3. Install dependencies:
     ```bash
-    npm install
+    npm install readline-sync
+    npm install @svgdotjs/svg.js
+    npm install svgdom
     ```
 4. Run the application:
     ```bash
