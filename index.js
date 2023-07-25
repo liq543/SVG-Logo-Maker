@@ -1,40 +1,57 @@
-const readlineSync = require('readline-sync');
+const inquirer = require('inquirer');
 const { SVG, registerWindow } = require('@svgdotjs/svg.js');
 const { createSVGWindow } = require('svgdom');
+const fs = require('fs');
+const Circle = require('./circle');
+const Triangle = require('./triangle');
+const Square = require('./square');
 
-// Create DOM environment
 const window = createSVGWindow();
 const document = window.document;
 registerWindow(window, document);
 
-// Text options
-const text = readlineSync.question('Enter up to three characters: ').slice(0, 3);
-const textColor = readlineSync.question('Enter text color (keyword or hex code): ');
+const shapes = {
+    'circle': Circle,
+    'triangle': Triangle,
+    'square': Square
+};
 
-// Shape options
-const shapes = ['circle', 'triangle', 'square'];
-const shapeIndex = readlineSync.keyInSelect(shapes, 'Choose a shape:');
-const shapeColor = readlineSync.question('Enter shape color (keyword or hex code): ');
+inquirer.prompt([
+    {
+        type: 'input',
+        name: 'text',
+        message: 'Enter up to three characters:',
+        validate: input => input.length <= 3 ? true : 'Text can be up to 3 characters long'
+    },
+    {
+        type: 'input',
+        name: 'textColor',
+        message: 'Enter text color (keyword or hex code):'
+    },
+    {
+        type: 'list',
+        name: 'shapeType',
+        message: 'Choose a shape:',
+        choices: ['circle', 'triangle', 'square']
+    },
+    {
+        type: 'input',
+        name: 'shapeColor',
+        message: 'Enter shape color (keyword or hex code):'
+    }
+]).then(answers => {
+    const draw = SVG(document.documentElement).size(300, 200);
 
-// Create SVG
-const draw = SVG(document.documentElement).size(300, 200);
-const shape = shapes[shapeIndex];
+    const shape = new shapes[answers.shapeType]();
+    shape.setColor(answers.shapeColor);
+    draw.svg(shape.render());
 
-if (shape === 'circle') {
-    draw.circle(160).move(70, 20).fill(shapeColor);
-} else if (shape === 'triangle') {
-    draw.polygon('150,20 280,180 20,180').fill(shapeColor);
-} else if (shape === 'square') {
-    draw.rect(200, 100).move(50, 50).fill(shapeColor);
-}
+    draw.text(answers.text)
+        .move(150, 80)
+        .fill(answers.textColor)
+        .font({ family: 'Verdana', size: 50, anchor: 'middle' });
 
-draw.text(text)
-    .move(150, 80)
-    .fill(textColor)
-    .font({ family: 'Verdana', size: 50, anchor: 'middle' });
-
-// Write to file
-const fs = require('fs');
-const filename = 'logo.svg';
-fs.writeFileSync(filename, draw.svg());
-console.log(`Generated ${filename}`);
+    const filename = 'logo.svg';
+    fs.writeFileSync(filename, draw.svg());
+    console.log(`Generated ${filename}`);
+});
