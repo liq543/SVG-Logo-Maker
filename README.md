@@ -44,8 +44,11 @@ npm test
 This project uses the following Node.js libraries:
 
 inquirer - for command-line user input
+
 svg.js - for generating SVG content
+
 svgdom - for creating a DOM environment for svg.js to work in a Node.js environment
+
 jest - for testing
 
 ## License
