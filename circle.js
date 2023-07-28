@@ -1,9 +1,9 @@
-import Shape from './shape.js';
+const Shape = require('./shape');
 
 class Circle extends Shape {
     render() {
-        return `<circle cx="150" cy="100" r="50" fill="${this.color}" />`;
+        return `<circle cx="150" cy="100" r="80" fill="${this.color}" />`;
     }
 }
 
-export default Circle;
+module.exports = Circle;

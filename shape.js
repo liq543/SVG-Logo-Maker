@@ -14,4 +14,4 @@ class Shape {
     }
 }
 
-export default Shape;
+module.exports = Shape;

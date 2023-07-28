@@ -1,10 +1,10 @@
-import inquirer from 'inquirer';
-import { SVG, registerWindow } from '@svgdotjs/svg.js';
-import { createSVGWindow } from 'svgdom';
-import { promises as fs } from 'fs';
-import Circle from './circle.js';
-import Triangle from './triangle.js';
-import Square from './square.js';
+const inquirer = require('inquirer');
+const { SVG, registerWindow } = require('@svgdotjs/svg.js');
+const { createSVGWindow } = require('svgdom');
+const fs = require('fs');
+const Circle = require('./circle');
+const Triangle = require('./triangle');
+const Square = require('./square');
 
 const window = createSVGWindow();
 const document = window.document;
@@ -39,7 +39,7 @@ inquirer.prompt([
         name: 'shapeColor',
         message: 'Enter shape color (keyword or hex code):'
     }
-]).then(async (answers) => {
+]).then(answers => {
     const draw = SVG(document.documentElement).size(300, 200);
 
     const shape = new shapes[answers.shapeType]();
@@ -52,6 +52,6 @@ inquirer.prompt([
         .font({ family: 'Verdana', size: 50, anchor: 'middle' });
 
     const filename = 'logo.svg';
-    await fs.writeFile(filename, draw.svg());
+    fs.writeFileSync(filename, draw.svg());
     console.log(`Generated ${filename}`);
 });
