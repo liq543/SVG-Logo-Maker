@@ -24,7 +24,7 @@ This application requires Node.js to be installed on your machine.
     ```
 3. Install dependencies:
     ```bash
-    npm install readline-sync
+    npm install inquirer
     npm install @svgdotjs/svg.js
     npm install svgdom
     ```
@@ -38,7 +38,7 @@ Follow the prompts to generate your SVG logo.
 
 This project uses the following Node.js libraries:
 
-* `readline-sync` - for command-line user input
+* `inquirer` - for command-line user input
 * `svg.js` - for generating SVG content
 * `svgdom` - for creating a DOM environment for svg.js to work in a Node.js environment
 
