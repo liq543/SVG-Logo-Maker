@@ -1,9 +1,9 @@
-import Shape from './shape.js';
+const Shape = require('./shape');
 
 class Triangle extends Shape {
     render() {
-        return `<polygon points="150,50 200,150 100,150" fill="${this.color}" />`;
+        return `<polygon points="150,20 280,180 20,180" fill="${this.color}" />`;
     }
 }
 
-export default Triangle;
+module.exports = Triangle;
