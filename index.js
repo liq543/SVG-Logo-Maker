@@ -1,57 +1,77 @@
+// Importing all necessary files
 const inquirer = require('inquirer');
-const { SVG, registerWindow } = require('@svgdotjs/svg.js');
-const { createSVGWindow } = require('svgdom');
 const fs = require('fs');
-const Circle = require('./circle');
-const Triangle = require('./triangle');
-const Square = require('./square');
+const { Triangle, Square, Circle} = require('./lib/shapes.js')
+const SVG = require('./lib/svg.js');
 
-const window = createSVGWindow();
-const document = window.document;
-registerWindow(window, document);
+// Function to prompt questions
+function questions() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'What text do you want to display in the logo? (Enter up to  3 characters)',
+                name: 'text',
+            },
+            {
+                type: 'input',
+                message: 'What color do you want for the text in the logo? (Enter color keyword or a hexadecimal number)',
+                name: 'textColor',
+            },
+            {
+                type: 'list',
+                message: 'Which shape would you prefer for the logo?',
+                name: 'shape',
+                choices: ['Triangle', 'Square', 'Circle']
+            },
+            {
+                type: 'input',
+                message: 'What color do you want for the shape? (Enter color keyword or a hexadecimal number)',
+                name: 'shapeColor',
+            },
+        ])
+        .then((response) => {
+            // console.log(response)
+            generateSVG(response)
 
-const shapes = {
-    'circle': Circle,
-    'triangle': Triangle,
-    'square': Square
-};
+            if (response.text.length > 3) {
+                console.log('Your text cannot be more than 3 characters.');
+                questions();
+            } else {
+                writeToFile('logo.svg', svgString)
+            }
+        })
+}
 
-inquirer.prompt([
-    {
-        type: 'input',
-        name: 'text',
-        message: 'Enter up to three characters:',
-        validate: input => input.length <= 3 ? true : 'Text can be up to 3 characters long'
-    },
-    {
-        type: 'input',
-        name: 'textColor',
-        message: 'Enter text color (keyword or hex code):'
-    },
-    {
-        type: 'list',
-        name: 'shapeType',
-        message: 'Choose a shape:',
-        choices: ['circle', 'triangle', 'square']
-    },
-    {
-        type: 'input',
-        name: 'shapeColor',
-        message: 'Enter shape color (keyword or hex code):'
+// Global empty string to generate string for SVG
+let svgString = "";
+
+// Function to generate SVG with responses
+function generateSVG(response) {
+    
+    let shapeOption;
+
+    if (response.shape === 'Triangle') {
+        shapeOption = new Triangle();
+    } else if (response.shape === 'Square') {
+        shapeOption = new Square()
+    } else if (response.shape === 'Circle') {
+        shapeOption = new Circle()
     }
-]).then(answers => {
-    const draw = SVG(document.documentElement).size(300, 200);
 
-    const shape = new shapes[answers.shapeType]();
-    shape.setColor(answers.shapeColor);
-    draw.svg(shape.render());
+    shapeOption.setColor(response.shapeColor);
 
-    draw.text(answers.text)
-        .move(150, 80)
-        .fill(answers.textColor)
-        .font({ family: 'Verdana', size: 50, anchor: 'middle' });
 
-    const filename = 'logo.svg';
-    fs.writeFileSync(filename, draw.svg());
-    console.log(`Generated ${filename}`);
-});
+    const svg = new SVG();
+    svg.setTextString(response.text, response.textColor);
+    svg.setShapeOption(shapeOption)
+    svgString = svg.render()
+}
+
+// Function to write the SVG file
+function writeToFile(filename, data) {
+    fs.writeFile(filename, data, (err) =>
+    err ? console.log(err) : console.log('Generated logo.svg!!'))
+}
+
+questions()

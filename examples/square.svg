@@ -4,5 +4,5 @@
         
         <rect x="75" y="25" width="150" height="150" fill= "blue"/>
         
-        <text x="150" y="115" font-size="45" text-anchor="middle" fill="red">pop</text>
+        <text x="150" y="115" font-size="45" text-anchor="middle" fill="limegreen">SVG</text>
 </svg>

@@ -1,47 +1,58 @@
 # SVG Logo Generator
 
-A simple Node.js command-line application for generating SVG logos. Perfect for freelance web developers who want a quick, customizable logo for their projects without having to pay a graphic designer.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## Features
+## Description
 
-* Enter up to three characters for your logo text.
-* Choose your text color using color keywords or hex codes.
-* Choose a shape for your logo from a list of available shapes: circle, triangle, square.
-* Choose your shape color using color keywords or hex codes.
-* Generates an SVG file named `logo.svg`.
+Generate SVG logos using Node.js, Inquirer, and Jest. Create logos in shapes like Triangle, Square, or Circle, with up to three characters displayed.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contribute](#contribute)
+- [Tests](#tests)
+- [Contact](#contact)
 
 ## Installation
 
-This application requires Node.js to be installed on your machine.
+1. Clone the repository.
+2. Ensure you have the required dependencies. If not, install them using:
+```bash
+npm i inquirer@8.2.4
+npm i jest
+```
 
-1. Clone this repository:
-    ```bash
-    git clone https://github.com/liq543/SVG-Logo-Maker.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd SVG-Logo-Maker
-    ```
-3. Install dependencies:
-    ```bash
-    npm install inquirer
-    npm install @svgdotjs/svg.js
-    npm install svgdom
-    ```
-4. Run the application:
-    ```bash
-    node index.js
-    ```
-Follow the prompts to generate your SVG logo.
+Learn more about [Inquirer](https://www.npmjs.com/package/inquirer) and [Jest](https://jestjs.io/).
 
-## Dependencies
+## Usage
 
-This project uses the following Node.js libraries:
+To create a SVG logo:
 
-* `inquirer` - for command-line user input
-* `svg.js` - for generating SVG content
-* `svgdom` - for creating a DOM environment for svg.js to work in a Node.js environment
+1. Run the command:
+```bash
+node index.js
+```
+2. Answer the prompts and the logo will be generated based on your choices.
 
 ## License
 
-This project is licensed under the terms of the MIT License.
+This project is under the MIT license. View [LICENSE](./LICENSE) for details.
+
+## Contribute
+
+To contribute, open an issue or submit a PR.
+
+## Tests
+
+To run tests, enter:
+```bash
+npm run test
+```
+
+Tests are available for Shapes, Triangle, Square, Circle, and SVG classes.
+
+## Contact
+
+For questions or feedback, reach out via [GitHub](https://github.com/liq543).
