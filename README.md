@@ -7,7 +7,7 @@
 Makes SVG logos using Node.js, Inquirer, and Jest. Create logos in shapes like Triangle, Square, or Circle, with up to three characters displayed.
 
 ## Screenshot and Video Link
-[Screenshot of SVG-Logo-Maker](https://i.imgur.com/YHWEYUy.png)
+![Screenshot of SVG-Logo-Maker](https://i.imgur.com/YHWEYUy.png)
 
 Check a video of it out here on [Youtube](https://youtu.be/Z0zoOgagcnI)
 ## Table of Contents
