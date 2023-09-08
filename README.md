@@ -1,11 +1,15 @@
-# SVG Logo Generator
+# SVG Logo Maker
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## Description
 
-Generate SVG logos using Node.js, Inquirer, and Jest. Create logos in shapes like Triangle, Square, or Circle, with up to three characters displayed.
+Makes SVG logos using Node.js, Inquirer, and Jest. Create logos in shapes like Triangle, Square, or Circle, with up to three characters displayed.
 
+## Screenshot and Video Link
+[Screenshot of SVG-Logo-Maker](https://imgur.com/bb32fd98-54f5-4407-ad1b-5d09a6fc0fc2)
+
+Check a video of it out here on [Youtube](https://youtu.be/Z0zoOgagcnI)
 ## Table of Contents
 
 - [Installation](#installation)
@@ -34,7 +38,7 @@ To create a SVG logo:
 ```bash
 node index.js
 ```
-2. Answer the prompts and the logo will be generated based on your choices.
+2. Answer the prompts and the logo will be made based on your choices.
 
 ## License
 
